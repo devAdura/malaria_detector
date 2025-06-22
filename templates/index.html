@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧫 Malaria Detection Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🧫 Malaria Detection Web App</h1>
+    <p class="subtitle">Upload blood cell images to check for infection easily and quickly.</p>
+
+    <form id="uploadForm" aria-label="Malaria detection form">
+      <input
+        type="file"
+        name="images"
+        id="images"
+        multiple
+        required
+        accept="image/*"
+        aria-describedby="notification"
+      />
+      <button type="submit">Start Detection 🔍</button>
+      <button type="button" id="downloadBtn">Download Results CSV 📥</button>
+      <button type="button" id="aboutBtn">About ℹ️</button>
+    </form>
+
+    <div id="notification" role="alert" aria-live="assertive" aria-atomic="true" class="notification hidden"></div>
+
+    <div id="preview" class="preview-grid" aria-live="polite" aria-label="Image previews"></div>
+    <div id="results" class="results" aria-live="polite" aria-label="Prediction results">
+      No results yet. Upload images to get started.
+    </div>
+
+    <canvas id="chart" width="400" height="200" aria-label="Prediction statistics chart" role="img" style="display:none;"></canvas>
+  </div>
+
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-content">
+      <h2 id="aboutTitle">About Malaria Detection App</h2>
+      <p>This app uses a trained CNN model to classify blood cell images as Parasitized or Uninfected.</p>
+      <button id="closeAbout">Close</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
